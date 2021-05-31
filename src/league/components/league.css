@@ -1,0 +1,19 @@
+.error {
+    color: red
+}
+.nav-home {
+    color: white
+}
+.dropdown-menu {
+    right: 0;
+    left: auto;
+}
+.shim {
+    margin-top: 5px;
+}
+.nav-bar-right {
+    display: inline;
+}
+.notification-alert {
+    background-color: lightblue;
+}

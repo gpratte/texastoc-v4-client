@@ -1,0 +1,2 @@
+
+export const GOT_SEASON_GAMES = 'GOT_SEASON_GAMES'

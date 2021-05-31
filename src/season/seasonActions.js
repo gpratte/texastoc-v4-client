@@ -1,0 +1,6 @@
+
+export const ADDED_NEW_SEASON = 'ADD_NEW_SEASON';
+export const GETTING_SEASON = 'GETTING_SEASON';
+export const GOT_SEASON = 'GOT_SEASON';
+export const SEASON_NOT_FOUND = 'SEASON_NOT_FOUND';
+

@@ -1,0 +1,13 @@
+.style1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.style2 {
+    flex: 1;
+    text-align: center;
+}
+
+
