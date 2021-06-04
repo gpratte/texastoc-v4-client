@@ -24,7 +24,7 @@ export function getQuarterlySeasons(token) {
     return;
   }
 
-  server.get('/api/v3/seasons/' + seasonId + '/quarterlies', {
+  server.get('/api/v4/seasons/' + seasonId + '/quarterlies', {
     headers: {
       'Authorization': `Bearer ${token}`
     }

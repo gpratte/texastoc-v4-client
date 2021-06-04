@@ -19,7 +19,7 @@ export function addNewSeason(year) {
   const seasonStart = {};
   seasonStart['startYear'] = year;
 
-  server.post('/api/v3/seasons', seasonStart, {
+  server.post('/api/v4/seasons', seasonStart, {
     headers: {
       'Authorization': `Bearer ${token}`
     }
@@ -51,14 +51,20 @@ export function getCurrentSeason(token) {
     return;
   }
 
-  server.get('/api/v3/seasons/current', {
+  server.get('/api/v4/seasons', {
     headers: {
       'Authorization': `Bearer ${token}`
     }
   })
     .then(result => {
-      leagueStore.dispatch({type: GOT_SEASON, season: result.data})
-      leagueStore.dispatch({type: REFRESH, refresh: false})
+      console.log(result)
+      // TODO need to look for more than one season when there is going to be more than one
+      if (result.data.length === 1) {
+        leagueStore.dispatch({type: GOT_SEASON, season: result.data[0]})
+        leagueStore.dispatch({type: REFRESH, refresh: false})
+      } else {
+        leagueStore.dispatch({type: SEASON_NOT_FOUND, flag: true})
+      }
     })
     .catch(function (error) {
       console.log(error.message ? error.message : error.toString());
@@ -80,7 +86,7 @@ export function finalize(seasonId) {
     return;
   }
 
-  server.put('/api/v3/seasons/' + seasonId, {}, {
+  server.put('/api/v4/seasons/' + seasonId, {}, {
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/vnd.texastoc.finalize+json'
@@ -108,7 +114,7 @@ export function unfinalize(seasonId) {
     return;
   }
 
-  server.put('/api/v3/seasons/' + seasonId, {}, {
+  server.put('/api/v4/seasons/' + seasonId, {}, {
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/vnd.texastoc.unfinalize+json'

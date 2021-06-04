@@ -6,11 +6,11 @@ import {API_ERROR,
   REFRESH,
   VERSION_CHECK,
   NEW_VERSION} from "./leagueActions";
+import {getCurrentGame} from "../current-game/gameClient";
 import {getCurrentSeason} from "../season/seasonClient";
 import {getQuarterlySeasons} from "../season/seasonQuartersClient";
 import {getSeasonGames} from "../season/seasonGamesClient";
 import {GETTING_SEASON} from "../season/seasonActions";
-import {clearCacheCurrentGame, getCurrentGame} from "../current-game/gameClient";
 import {VERSION} from '../utils/constants'
 import {isTokenExpired} from "../utils/util";
 
@@ -43,7 +43,6 @@ export function refreshLeague(token) {
   getCurrentSeason(token);
   getQuarterlySeasons(token);
   getSeasonGames(token);
-  clearCacheCurrentGame();
   getCurrentGame(token);
 }
 
@@ -58,7 +57,7 @@ export function getPlayers(token) {
     return;
   }
 
-  server.get('/api/v3/players', {
+  server.get('/api/v4/players', {
     headers: {
       'Authorization': `Bearer ${token}`
     }
@@ -90,7 +89,7 @@ export function updatePlayer(playerId, firstName, lastName, phone, email, passwo
     password: password
   };
 
-  server.put('/api/v3/players/' + playerId, updatePlayerRequest, {
+  server.put('/api/v4/players/' + playerId, updatePlayerRequest, {
     headers: {
       'Authorization': `Bearer ${token}`
     }
@@ -132,7 +131,7 @@ export function checkDeployedVersion() {
   if (checkVersion) {
     leagueStore.dispatch({type: VERSION_CHECK})
 
-    server.get('/api/v3/settings')
+    server.get('/api/v4/settings')
       .then(result => {
         const externalVersion = '' + result.data.version.version;
         if (VERSION !== externalVersion) {
@@ -164,7 +163,7 @@ export function getRounds(callback) {
     return;
   }
 
-  server.get('/api/v3/clock/rounds', {
+  server.get('/api/v4/clock/rounds', {
     headers: {
       'Authorization': `Bearer ${token}`
     }
@@ -188,7 +187,7 @@ export function getPoints(callback) {
     return;
   }
 
-  server.get('/api/v3/settings', {
+  server.get('/api/v4/settings', {
     headers: {
       'Authorization': `Bearer ${token}`
     }
@@ -212,7 +211,7 @@ export function deletePlayer(playerId) {
     return;
   }
 
-  server.delete('/api/v3/players/' + playerId, {
+  server.delete('/api/v4/players/' + playerId, {
     headers: {
       'Authorization': `Bearer ${token}`
     }
