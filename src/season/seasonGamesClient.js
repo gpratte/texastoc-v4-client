@@ -24,7 +24,7 @@ export function getSeasonGames(token) {
     return;
   }
 
-  server.get('/api/v3/games?seasonId=' + seasonId, {
+  server.get('/api/v4/seasons/' + seasonId + '/games', {
     headers: {
       'Authorization': `Bearer ${token}`
     }

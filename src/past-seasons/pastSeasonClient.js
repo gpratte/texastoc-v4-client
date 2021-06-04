@@ -12,7 +12,7 @@ export function getPastSeasons(callback) {
     return;
   }
 
-  server.get('/api/v3/seasons/history', {
+  server.get('/api/v4/seasons/history', {
     headers: {
       'Authorization': `Bearer ${token}`
     }

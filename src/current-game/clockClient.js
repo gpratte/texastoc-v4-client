@@ -6,7 +6,7 @@ export function getClock(callback) {
   const gameId = leagueStore.getState().game.data.id;
   const token = leagueStore.getState().token.token;
 
-  server.get('/api/v3/games/' + gameId + '/clock', {
+  server.get('/api/v4/games/' + gameId + '/clock', {
     headers: {
       'Authorization': `Bearer ${token}`
     }
@@ -25,7 +25,7 @@ export function resume() {
   const gameId = leagueStore.getState().game.data.id;
   const token = leagueStore.getState().token.token;
 
-  server.post('/api/v3/games/' + gameId + '/clock', {}, {
+  server.post('/api/v4/games/' + gameId + '/clock', {}, {
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/vnd.texastoc.clock-resume+json'
@@ -45,7 +45,7 @@ export function pause() {
   const gameId = leagueStore.getState().game.data.id;
   const token = leagueStore.getState().token.token;
 
-  server.post('/api/v3/games/' + gameId + '/clock', {}, {
+  server.post('/api/v4/games/' + gameId + '/clock', {}, {
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/vnd.texastoc.clock-pause+json'
@@ -65,7 +65,7 @@ export function back() {
   const gameId = leagueStore.getState().game.data.id;
   const token = leagueStore.getState().token.token;
 
-  server.post('/api/v3/games/' + gameId + '/clock', {}, {
+  server.post('/api/v4/games/' + gameId + '/clock', {}, {
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/vnd.texastoc.clock-back+json'
@@ -85,7 +85,7 @@ export function forward() {
   const gameId = leagueStore.getState().game.data.id;
   const token = leagueStore.getState().token.token;
 
-  server.post('/api/v3/games/' + gameId + '/clock', {}, {
+  server.post('/api/v4/games/' + gameId + '/clock', {}, {
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/vnd.texastoc.clock-forward+json'
