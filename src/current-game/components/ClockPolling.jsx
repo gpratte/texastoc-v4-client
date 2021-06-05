@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from "react-bootstrap/Button";
-import {getClock, resume, pause, back, forward} from '../clockClient'
+import {getClock, resume, pause, stepBack, back, forward, stepForward} from '../clockClient'
 
 /*
  *
@@ -53,8 +53,15 @@ class ClockPolling extends React.Component {
             {
               !clock.playing &&
               <Button variant="link"
-                      onClick={() => back()}>
+                      onClick={() => stepBack()}>
                 <i className="fas fa-step-backward"></i>
+              </Button>
+            }
+            {
+              !clock.playing &&
+              <Button variant="link"
+                      onClick={() => back()}>
+                <i className="fas fa-backward"></i>
               </Button>
             }
             {
@@ -75,6 +82,13 @@ class ClockPolling extends React.Component {
               !clock.playing &&
               <Button variant="link"
                       onClick={() => forward()}>
+                <i className="fas fa-forward"/>
+              </Button>
+            }
+            {
+              !clock.playing &&
+              <Button variant="link"
+                      onClick={() => stepForward()}>
                 <i className="fas fa-step-forward"/>
               </Button>
             }
