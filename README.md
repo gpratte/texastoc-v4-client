@@ -58,5 +58,6 @@ Build the war for prod
 
 TODO the rest of the instructions to deploy to production
 
-## Current Branch: 09-show-both-the-original-and-chopped-payouts-points
-Show the original payouts/points with strikethrough and the chopped payouts/points
+## Current Branch: 02-remove-password-from-update-player
+No longer show the password in the edit player component. Also removed password from the
+call to the server when updating a player.

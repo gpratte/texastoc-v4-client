@@ -22,7 +22,7 @@ export function login(email, password) {
 }
 
 export function forgot(email) {
-  server.post('/password/reset', {email: email}, {
+  server.post('/api/v4/password/reset', {email: email}, {
     headers: {
       'Content-Type': 'application/vnd.texastoc.password-forgot+json'
     }
@@ -37,7 +37,7 @@ export function forgot(email) {
 }
 
 export function resetPassword(code, password) {
-  server.post('/password/reset', {code, password}, {
+  server.post('/api/v4/password/reset', {code, password}, {
     headers: {
       'Content-Type': 'application/vnd.texastoc.password-reset+json'
     }

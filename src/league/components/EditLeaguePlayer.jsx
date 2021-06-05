@@ -24,17 +24,12 @@ class EditLeaguePlayer extends React.Component {
     let emailValue = e.target.elements.emailId.value;
     emailValue = emailValue.includes('*') ? leaguePlayer.email : emailValue;
 
-    // If there is an asterisk in the field use the original
-    let passwordValue = e.target.elements.passwordId.value;
-    passwordValue = passwordValue.includes('*') ? null : passwordValue;
-
     leagueStore.dispatch({type: EDIT_LEAGUE_PLAYER, id: null});
     updatePlayer(e.target.elements.playerId.value,
       e.target.elements.firstNameId.value,
       e.target.elements.lastNameId.value,
       phoneValue,
-      emailValue,
-      passwordValue);
+      emailValue);
   }
 
   render() {
@@ -87,12 +82,6 @@ class EditLeaguePlayer extends React.Component {
                 <Form.Text className="text-muted">
                   Needed for text messages
                 </Form.Text>
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password"
-                              defaultValue={'**********'}
-                              placeholder="Enter password" id={'passwordId'}/>
               </Form.Group>
               <Modal.Footer>
                 <Button variant="danger" className='mr-auto' onClick={() => {
