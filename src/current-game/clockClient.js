@@ -81,6 +81,26 @@ export function back() {
     });
 }
 
+export function stepBack() {
+  const gameId = leagueStore.getState().game.data.id;
+  const token = leagueStore.getState().token.token;
+
+  server.post('/api/v4/games/' + gameId + '/clock', {}, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/vnd.texastoc.clock-step-back+json'
+    }
+  })
+    .then(result => {
+      // do nothing
+    })
+    .catch(function (error) {
+      console.log(error.message ? error.message : error.toString());
+      const message = error.message ? error.message : error.toString();
+      leagueStore.dispatch({type: API_ERROR, message: message})
+    });
+}
+
 export function forward() {
   const gameId = leagueStore.getState().game.data.id;
   const token = leagueStore.getState().token.token;
@@ -89,6 +109,26 @@ export function forward() {
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/vnd.texastoc.clock-forward+json'
+    }
+  })
+    .then(result => {
+      // do nothing
+    })
+    .catch(function (error) {
+      console.log(error.message ? error.message : error.toString());
+      const message = error.message ? error.message : error.toString();
+      leagueStore.dispatch({type: API_ERROR, message: message})
+    });
+}
+
+export function stepForward() {
+  const gameId = leagueStore.getState().game.data.id;
+  const token = leagueStore.getState().token.token;
+
+  server.post('/api/v4/games/' + gameId + '/clock', {}, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/vnd.texastoc.clock-step-forward+json'
     }
   })
     .then(result => {

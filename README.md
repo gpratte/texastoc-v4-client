@@ -58,6 +58,6 @@ Build the war for prod
 
 TODO the rest of the instructions to deploy to production
 
-## Current Branch: 03-settings-component
-Added a new Settings component that is accessible from the menu. There is only
-one setting - enable or disable one touch rebuy in the current game.
+## Current Branch: 04-clock-step-forward-and-back
+Now able to move the clock forward a minute at a time or step to the next round.
+Also able to move the clock back a minute at a time or step to the previous round.
