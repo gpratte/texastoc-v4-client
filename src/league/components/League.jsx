@@ -8,6 +8,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import {Link, Route, Switch} from 'react-router-dom';
 import Error from './Error'
 import NewVersion from './NewVersion'
+import Settings from './Settings'
 import Home from '../../home/Home'
 import Login from '../../login/components/Login'
 import ForgotPassword from '../../login/components/ForgotPassword'
@@ -121,6 +122,14 @@ class League extends React.Component {
                       </Link>
                     </Dropdown.Item>
                   }
+                  {
+                    isLoggedIn(league) &&
+                    <Dropdown.Item>
+                      <Link exact to="/league/settings">
+                        <Button variant="link">Settings</Button>
+                      </Link>
+                    </Dropdown.Item>
+                  }
                 </Dropdown.Menu>
               </Dropdown>
 
@@ -185,6 +194,9 @@ class League extends React.Component {
                 </Route>
                 <Route path='/season/new'>
                   <NewSeason league={league}/>
+                </Route>
+                <Route path='/league/settings'>
+                  <Settings league={league}/>
                 </Route>
                 <Route path='/game/new'>
                   <NewGame league={league}/>
