@@ -25,7 +25,8 @@ export const seed = {
     data: null
   },
   token: null,
-  apiError: null
+  apiError: null,
+  oneTouchRebuy: false
 }
 
 const store = createStore(leagueReducer, seed);

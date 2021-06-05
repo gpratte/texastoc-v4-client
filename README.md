@@ -58,6 +58,6 @@ Build the war for prod
 
 TODO the rest of the instructions to deploy to production
 
-## Current Branch: 02-remove-password-from-update-player
-No longer show the password in the edit player component. Also removed password from the
-call to the server when updating a player.
+## Current Branch: 03-settings-component
+Added a new Settings component that is accessible from the menu. There is only
+one setting - enable or disable one touch rebuy in the current game.

@@ -11,7 +11,8 @@ import {API_ERROR,
   REFRESH,
   VERSION_CHECK,
   WAITING,
-  NEW_VERSION} from "./leagueActions";
+  NEW_VERSION,
+  UPDATE_SETTINGS} from "./leagueActions";
 import seasonGamesReducer from "../season/seasonGamesReducer";
 
 function leagueReducer(league, action) {
@@ -34,6 +35,8 @@ function leagueReducer(league, action) {
       return Object.assign({}, league, {versionCheck: new Date()});
     case WAITING:
       return Object.assign({}, league, {waiting: action.flag});
+    case UPDATE_SETTINGS:
+      return Object.assign({}, league, {oneTouchRebuy: action.flag});
     default:
       return Object.assign({}, league,
         {apiError: null},

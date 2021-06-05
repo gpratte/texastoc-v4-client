@@ -47,7 +47,7 @@ class GamePlayers extends React.Component {
     )
   }
 
-  renderGamePlayers(gamePlayers, isChop, isGameOver, canRebuy) {
+  renderGamePlayers(gamePlayers, isChop, isGameOver, canRebuy, oneTouchRebuy) {
     if (!gamePlayers) {
       return;
     }
@@ -90,11 +90,11 @@ class GamePlayers extends React.Component {
           <td>{boughtIn ? String.fromCharCode(10004) : ''}</td>
           <td>
             {
-              (isGameOver || !canRebuy) &&
+              (isGameOver || !canRebuy || !oneTouchRebuy) &&
               rebought ? String.fromCharCode(10004) : ''
             }
             {
-              (!isGameOver && canRebuy) &&
+              (!isGameOver && canRebuy && oneTouchRebuy) &&
               <Button variant="link" onClick={() => {this.toggleRebuy(id);}}>
                 {rebought ? String.fromCharCode(10004) : String.fromCharCode(248)}
               </Button>
@@ -129,6 +129,7 @@ class GamePlayers extends React.Component {
     const isChop = this.isThereChop(gamePlayers);
     const numPaidPlayers = game.data.numPaidPlayers;
     const canRebuy = game.data.canRebuy;
+    const oneTouchRebuy = leagueStore.getState().oneTouchRebuy;
 
     return (
       <div>
@@ -153,7 +154,7 @@ class GamePlayers extends React.Component {
           </tr>
           </thead>
           <tbody>
-          {this.renderGamePlayers(gamePlayers, isChop, isGameOver, canRebuy)}
+          {this.renderGamePlayers(gamePlayers, isChop, isGameOver, canRebuy, oneTouchRebuy)}
           </tbody>
         </Table>
 
