@@ -71,7 +71,7 @@ export function getPlayers(token) {
     });
 }
 
-export function updatePlayer(playerId, firstName, lastName, phone, email, password) {
+export function updatePlayer(playerId, firstName, lastName, phone, email) {
   if (!leagueStore.getState().token) {
     return;
   }
@@ -85,8 +85,7 @@ export function updatePlayer(playerId, firstName, lastName, phone, email, passwo
     firstName: firstName,
     lastName: lastName,
     phone: phone,
-    email: email,
-    password: password
+    email: email
   };
 
   server.put('/api/v4/players/' + playerId, updatePlayerRequest, {
