@@ -17,7 +17,6 @@ import {gameOver} from "../gameUtils";
 import {shouldRedirect, redirect} from '../../utils/util';
 import {refreshing, isRefreshing} from '../../league/leagueClient'
 import * as SockJS from "sockjs-client";
-import {SERVER_URL} from "../../utils/constants";
 import * as Stomp from "stompjs";
 
 class CurrentGame extends React.Component {
@@ -58,7 +57,7 @@ class CurrentGame extends React.Component {
   connect = () => {
     let socket = null;
     try {
-      socket = new SockJS(SERVER_URL + '/socket');
+      socket = new SockJS(process.env.REACT_APP_SERVER_URL + '/socket');
 
       const stompClient = Stomp.over(socket);
       stompClient.connect({}, function (frame) {

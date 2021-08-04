@@ -3,7 +3,6 @@ import './Home.css';
 import {Link} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import {redirect, shouldRedirect} from "../utils/util";
-import {CLIENT_URL} from "../utils/constants";
 
 const Home = (props) => {
   const league = props.league;
@@ -73,7 +72,7 @@ const Home = (props) => {
       </p>
       <p>If the app does not seem to be working right...</p>
       <p>
-        <Button variant="outline-secondary" href={CLIENT_URL}>
+        <Button variant="outline-secondary" href={process.env.REACT_APP_CLIENT_URL}>
           Reload
         </Button>
       </p>

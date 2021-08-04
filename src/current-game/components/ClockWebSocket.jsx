@@ -2,7 +2,6 @@ import React from 'react'
 import './GamePlayers.css'
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
-import {SERVER_URL} from '../../utils/constants';
 import Button from "react-bootstrap/Button";
 import {back, forward, pause, resume, getClock} from "../clockClient";
 
@@ -40,7 +39,7 @@ class ClockWebSocket extends React.Component {
   connect = () => {
     let socket = null;
     try {
-      socket = new SockJS(SERVER_URL + '/socket');
+      socket = new SockJS(process.env.REACT_APP_SERVER_URL + '/socket');
 
       const that = this;
 

@@ -2,8 +2,8 @@
 export const VERSION = "4.00";
 
 // This UI Application (React/Redux)
-// Local or docker
-export const CLIENT_URL = "http://localhost:3000";
+// Local
+//export const CLIENT_URL = "http://localhost:3000";
 
 // Production texastoc
 //export const CLIENT_URL = "https://texastoc.com";
@@ -13,8 +13,8 @@ export const CLIENT_URL = "http://localhost:3000";
 
 
 // Where to find the Server Application
-// Local or docker
-export const SERVER_URL = "http://localhost:8080";
+// Local
+//export const SERVER_URL = "http://localhost:8080";
 
 // Production texastoc
 //export const SERVER_URL = "https://texastoc.com/server";

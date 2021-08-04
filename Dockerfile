@@ -1,3 +1,5 @@
+# docker build -t texastoc-v4-ui-image .
+
 # pull the official base image
 FROM node:16-alpine3.11
 # set working direction
