@@ -16,8 +16,6 @@ import {getCurrentGame} from "../gameClient";
 import {gameOver} from "../gameUtils";
 import {shouldRedirect, redirect} from '../../utils/util';
 import {refreshing, isRefreshing} from '../../league/leagueClient'
-import * as SockJS from "sockjs-client";
-import * as Stomp from "stompjs";
 
 class CurrentGame extends React.Component {
 
@@ -41,9 +39,8 @@ class CurrentGame extends React.Component {
   }
 
   componentDidMount() {
-    this.timer = setInterval(this.check, 10000);
     leagueStore.dispatch({type: GETTING_CURRENT_GAME, flag: true})
-    this.connect();
+    getCurrentGame();
   }
 
   componentDidUpdate() {
@@ -51,38 +48,7 @@ class CurrentGame extends React.Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timer)
   }
-
-  connect = () => {
-    let socket = null;
-    try {
-      socket = new SockJS(process.env.REACT_APP_SERVER_URL + '/socket');
-
-      const stompClient = Stomp.over(socket);
-      stompClient.connect({}, function (frame) {
-        stompClient.subscribe('/topic/game', data => {
-          // Game changed, go get it
-          getCurrentGame();
-        });
-      });
-
-      // Take over the function that prints debug messages
-      stompClient.debug = function (str) {
-        // do nothing
-      };
-    } finally {
-      this.setState({ws: socket})
-      getCurrentGame();
-      return socket;
-    }
-  };
-
-  check = () => {
-    //check if websocket instance is closed, if so call `connect` function.
-    const { ws } = this.state;
-    if (!ws || ws.readyState === WebSocket.CLOSED) this.connect();
-  };
 
   // TODO move to utils
   refreshGame = () => {
