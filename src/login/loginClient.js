@@ -6,7 +6,7 @@ import {refreshLeague} from "../league/leagueClient";
 
 export function login(email, password) {
   leagueStore.dispatch({type: WAITING, flag: true})
-  server.post('/login', {email: email, password: password})
+  server.post('/api/v4/login', {email: email, password: password})
     .then(result => {
       leagueStore.dispatch({type: LOGGED_IN, token: result.data.token})
       leagueStore.dispatch({type: REDIRECT, to: '/home'})

@@ -20,8 +20,8 @@ services:
     container_name: client
     image: texastoc-v4-ui-image:latest
     environment:
-      - REACT_APP_CLIENT_URL=http://localhost:3000
-      - REACT_APP_SERVER_URL=http://localhost:8080
+      - REACT_APP_CLIENT_URL=https://localhost
+      - REACT_APP_SERVER_URL=https://localhost
     ports:
       - 3000:3000
     depends_on:
