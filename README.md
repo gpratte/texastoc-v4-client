@@ -7,7 +7,7 @@ Version 4 will
   backend APIs
 * dockerize the application
 
-# Profiles, Building and Running
+# Building and Running
 The urls for the client and server are defined as environment variables
 
 For running locally they are defined in a `.env` file (that is not under source control)
