@@ -1,0 +1,40 @@
+version: '3'
+services:
+  db:
+    container_name: db
+    image: 'mysql:8.0.25'
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+    ports:
+      - 3306:3306
+    volumes:
+      - '/home/administrator/data:/var/lib/mysql'
+  server:
+    container_name: server
+    image: gprattemm/texastoc-v4-mysql-image:latest
+    environment:
+      SPRING_APPLICATION_JSON: >
+        {
+          "db": {
+            "h2": false,
+            "mysql": true
+          },
+          "mysql": {
+            "url": "jdbc:mysql://db:3306/toc?allowPublicKeyRetrieval=true&useSSL=false",
+            "password": "shipit"
+          }
+        }
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+  client:
+    container_name: client
+    image: texastoc-v4-ui-image:latest
+    environment:
+      - REACT_APP_CLIENT_URL=http://204.2.194.3:3000
+      - REACT_APP_SERVER_URL=http://204.2.194.3:8080
+    ports:
+      - 3000:3000
+    depends_on:
+      - server

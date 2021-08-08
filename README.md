@@ -1,63 +1,63 @@
 # texastoc-v4-client
 
-Refactoring [texastoc-v3-client](https://github.com/gpratte/texastoc-v3-client) react/redux client to
-make use of the new [texastoc-v4-integration-testing](https://github.com/gpratte/texastoc-v4-integration-testing)
-backend APIs.
+Version 4 will
+
+* refactor the [texastoc-v3-client](https://github.com/gpratte/texastoc-v3-client) react/redux client to
+  make use of the new [texastoc-v4-integration-testing](https://github.com/gpratte/texastoc-v4-integration-testing)
+  backend APIs
+* dockerize the application
 
 # Profiles, Building and Running
-The urls for the client and server are defined in the constants.js file. Here is what they are set to when deploying to production.
+The urls for the client and server are defined as environment variables
 
+For running locally they are defined in a `.env` file (that is not under source control)
 ```
-// Local non-tomcat
-// export const CLIENT_URL = "http://localhost:3000";
-// export const SERVER_URL = "http://localhost:8080";
-
-// Local tomcat
-// export const CLIENT_URL = "http://localhost:8080";
-// export const SERVER_URL = "http://localhost:8080/server";
-
-// Heroku
-export const CLIENT_URL = "https://texastoc.herokuapp.com";
-export const SERVER_URL = "https://texastoc-server.herokuapp.com";
-
-// Prod
-export const CLIENT_URL = "https://texastoc.com";
-export const SERVER_URL = "https://texastoc.com/server";
+REACT_APP_CLIENT_URL=http://localhost:3000
+REACT_APP_SERVER_URL=http://localhost:8080
 ```
+When running in a docker container these variables are defined in the docker-compose.yml file
+which will be shown in the Docker section.
 
-### Maven Profile
-The default profile is `heroku` and the production profile is `prod`.
-
-To build the default profile
-* `mvn clean package`
-
-To build the prod profile
-* `mvn -P prod clean package`
-
-### Build and Run commands
+### Run from the command line
 Run the client locally by running
 * `npm start`
 
-Build the war to run locally deployed to installed tomcat
-* `mvn -P local clean package`<br/>
+#### Docker
 
-Build the war to run locally on port 9090
-* `mvn -P local-webapp-runner clean package`<br/>
-And run it
-* `java -jar target/dependency/webapp-runner.jar --port 9090 target/texastoc-v2-ui.war`
+The client can be run a container alongside the server running in another container.
 
-Build the war locally and deploy to Heroku
-* `mvn clean heroku:deploy-war`<br/>
-To tail the Heroku logs
-* `heroku logs --app texastoc --tail`
+See the server readme to know more about how the server is dockerized.
+https://github.com/gpratte/texastoc-v4-integration-testing#readme
 
+This example continues using the server running with an in-memory H2 database.
 
-### Deploying the prod war instruction
-Build the war for prod
-* `mvn -P prod clean package`
+Build the client Docker image
 
-TODO the rest of the instructions to deploy to production
+```
+docker build -t texastoc-v4-ui-image .
+```
 
-## Current Branch: 04-clock-step-forward-and-back
-Now able to move the clock forward a minute at a time or step to the next round.
-Also able to move the clock back a minute at a time or step to the previous round.
+A snippet of how the image looks
+
+```
+REPOSITORY                TAG
+texastoc-v4-ui-image      latest
+```
+
+You will set the environment in the docker-compose file. Here's the
+enviroment variables being set in the `docker-compose-h2.yml` file
+
+```
+client:
+  ...
+  environment:
+    - REACT_APP_CLIENT_URL=http://localhost:3000
+    - REACT_APP_SERVER_URL=http://localhost:8080
+  ...
+```
+
+Bring up the containers `docker compose -f docker-compose-h2.yml up`
+
+## Current Branch: 05-dockerize
+Moved the deployment from building a war which was deployed to tomcat to 
+run as a Docker container in node.js

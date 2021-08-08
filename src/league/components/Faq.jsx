@@ -1,5 +1,4 @@
 import React from 'react'
-import {CLIENT_URL} from '../../utils/constants'
 
 class Faq extends React.Component {
 
@@ -59,7 +58,7 @@ class Faq extends React.Component {
           </ul>
           The season payouts can be seen by looking at the Season page of this application.
           <p>
-          See <a href={CLIENT_URL + '/TOCPayoutStructure2019-2020.xlsx'}>TOCPayoutStructure2019-2020.xlsx</a>
+          See <a href={process.env.REACT_APP_CLIENT_URL + '/TOCPayoutStructure2019-2020.xlsx'}>TOCPayoutStructure2019-2020.xlsx</a>
             &nbsp; for the spreadsheet that is used to determine the payouts for the 2019-2020 season.
           </p>
         </p>
