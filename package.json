@@ -29,6 +29,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:localhost": "env-cmd -f .env.localhost npm run-script build",
+    "build:testtexastoc": "env-cmd -f .env.testtexastoc npm run-script build",
+    "build:texastoc": "env-cmd -f .env.texastoc npm run-script build",
+    "build:davebpoker": "env-cmd -f .env.davebpoker npm run-script build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
