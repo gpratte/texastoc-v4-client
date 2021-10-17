@@ -43,7 +43,7 @@ class Login extends React.Component {
             </Form.Group>
             {
               !league.waiting &&
-              <Button variant="primary" type="submit">
+              <Button id="loginSubmitId" variant="primary" type="submit">
                 Submit
               </Button>
             }
