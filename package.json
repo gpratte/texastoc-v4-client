@@ -26,11 +26,15 @@
     "uuid": "^8.1.0",
     "websocket": "^1.0.31"
   },
+  "devDependencies": {
+    "env-cmd": "^10.1.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "build:localhost": "env-cmd -f .env.localhost npm run-script build",
     "build:testtexastoc": "env-cmd -f .env.testtexastoc npm run-script build",
+    "build:stagingtexastoc": "env-cmd -f .env.stagingtexastoc npm run-script build",
     "build:texastoc": "env-cmd -f .env.texastoc npm run-script build",
     "build:davebpoker": "env-cmd -f .env.davebpoker npm run-script build",
     "test": "react-scripts test",
